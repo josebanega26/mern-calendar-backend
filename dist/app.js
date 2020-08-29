@@ -4,7 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const config_1 = require("./config");
+const auth_1 = __importDefault(require("./api/auth/auth"));
 const app = express_1.default();
-app.listen({ port: 3000 }, () => {
-    console.log("server it's work");
+app.use(express_1.default.static('public'));
+app.use('/api/auth', auth_1.default);
+app.listen({ port: config_1.PORT }, () => {
+    console.log("server it's work", config_1.PORT);
 });
