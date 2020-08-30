@@ -1,6 +1,6 @@
 import { Response } from 'express';
 
-export const success = (res: Response, message: string = '', status: number = 200) => {
+const success = (res: Response, message: any = '', status: number = 200) => {
   res.status(status).json({
     error: false,
     status,
@@ -8,14 +8,12 @@ export const success = (res: Response, message: string = '', status: number = 20
   });
 };
 
-export const error = (
-  res: Response,
-  message: string = 'Internal Server Error',
-  status: number = 500
-) => {
+const fail = (res: Response, message: any = 'Internal Server Error', status: number = 500) => {
   res.status(status).json({
     error: true,
     status,
     message,
   });
 };
+
+export const response = { success, fail };
