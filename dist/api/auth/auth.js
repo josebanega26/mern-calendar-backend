@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const response_helper_1 = require("../../helper/response.helper");
+const authController_1 = require("./authController");
 const authRouter = express_1.Router();
 // Auth router
-authRouter.route('/').get((req, res) => {
-    response_helper_1.success(res, 'text file', 200);
-});
+authRouter.route('/').post(authController_1.loginUser);
+authRouter.route('/new').post(authController_1.createUser);
+authRouter.route('/renew').get(authController_1.renewUser);
 exports.default = authRouter;

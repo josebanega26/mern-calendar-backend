@@ -1,9 +1,10 @@
-import { Router, NextFunction } from 'express';
-import { success } from '../../helper/response.helper';
+import { Router } from 'express';
+import { createUser, loginUser, renewUser } from './authController';
+
 const authRouter = Router();
 // Auth router
-authRouter.route('/').get((req, res) => {
-  success(res, 'text file', 200);
-});
+authRouter.route('/').post(loginUser);
+authRouter.route('/new').post(createUser);
+authRouter.route('/renew').get(renewUser);
 
 export default authRouter;
